@@ -10,7 +10,7 @@ server.get('/', (req, res) => {
   res.status(200).send('Users web API');
 })
 // users get
-server.get('/users', (req, res) => {
+server.get('/api/users', (req, res) => {
   db.find()
     .then( resolve => {
       res.status(200).json(resolve)
@@ -32,7 +32,7 @@ server.get('/users/:id', (req, res) => {
     })
 })
 // users post
-server.post('/users', (req, res) => {
+server.post('/api/users', (req, res) => {
   const user = req.body;
   db.insert(user)
     .then( users => {
@@ -45,7 +45,7 @@ server.post('/users', (req, res) => {
     })
 })
 // users delete
-server.delete(('/users/:id'), (req, res) => {
+server.delete(('/api/users/:id'), (req, res) => {
   const id = req.params.id;
 
   db.remove(id)
@@ -59,7 +59,7 @@ server.delete(('/users/:id'), (req, res) => {
     })
 })
 // users put edit
-server.put(('/users/:id'), (req, res) => {
+server.put(('/api/users/:id'), (req, res) => {
   const id = req.params.id;
   const user = req.body;
 
