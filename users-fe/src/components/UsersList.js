@@ -4,7 +4,9 @@ import React, { useEffect } from 'react';
 import axios from 'axios';
 //redux
 import { useDispatch, connect } from 'react-redux';
-import constants from '../redux/constants'
+import constants from '../redux/constants';
+//components
+import UserCard from './UserCard';
 
 const UsersList = props => {
   const dispatch = useDispatch();
@@ -20,21 +22,12 @@ const UsersList = props => {
       })
   }, [])
 
-  useEffect(() => {
-    console.log(props.users);
-  }, [props.users])
   return (
     <>
       <div className='usersList__cont'>
         {
-          console.log(props.users)
-        }
-        {
           props.users && props.users.map((user, index) => (
-            <div key={index} className='userCard__cont'>
-              <h2>{user.name}</h2>
-              <p>{user.bio}</p>
-            </div>
+            <UserCard user={user} index={index} key={index} />
           ))
         }
       </div>

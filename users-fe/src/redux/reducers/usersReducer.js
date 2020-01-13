@@ -3,7 +3,8 @@ import constants from '../constants';
 const initialState = {
   usersList: [],
   isAddingUser: false,
-  isGettingUsers: false
+  isGettingUsers: false,
+  isDeletingUser: false
 }
 
 export const usersReducer = (state = initialState, {type, payload}) => {
@@ -31,6 +32,23 @@ export const usersReducer = (state = initialState, {type, payload}) => {
         ...state,
         usersList: payload,
         isGettingUsers: false
+      }
+    // delete user
+    case constants.DELETING_USER:
+      return {
+        ...state,
+        isDeletingUser: true
+      }
+    case constants.DELETE_USER:
+      // payload is the index of user on client
+      const newList = state.usersList.slice(0, payload)
+                               .concat(state.usersList
+                               .slice(payload + 1))
+
+      return {
+        ...state,
+        usersList: newList,
+        isDeletingUser: false
       }
 
     default:
