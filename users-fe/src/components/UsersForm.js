@@ -33,6 +33,11 @@ const UsersForm = props => {
       .catch( err => {
         console.log(err);
       })
+
+    setUser({
+      name: '',
+      bio: ''
+    })
   }
   return (
     <>
