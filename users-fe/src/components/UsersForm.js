@@ -25,14 +25,13 @@ const UsersForm = props => {
     ev.preventDefault();
     dispatch({ type: constants.ADDING_USER });
 
-    axios.post('localhost:5000/api/users', user)
+    axios.post('http://localhost:5000/api/users', user)
       .then( res => {
         console.log(res);
         dispatch({ type: constants.ADD_USER, payload: user });
       })
       .catch( err => {
         console.log(err);
-        dispatch({ type: constants.ADD_USER_ERROR })
       })
   }
   return (
