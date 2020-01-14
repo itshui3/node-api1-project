@@ -1,7 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 import constants from '../redux/constants';
-import { useDispatch } from 'react-redux';
+import { useDispatch, connect } from 'react-redux';
+
+import UsersForm from './UsersForm';
 
 const UserCard = props => {
   // props.name, props.bio, props.index
@@ -17,13 +19,26 @@ const UserCard = props => {
       })
   }
 
+  console.log(props.user);
+
   return (
-    <div className='userCard__cont'>
-      <h2>{props.user.name}</h2>
-      <p>{props.user.bio}</p>
-      <button name={props.index} onClick={handleDelete}>Delete User</button>
-    </div>
+    <>
+      <div className='userCard__cont'>
+        <h2>{props.user.name}</h2>
+        <p>{props.user.bio}</p>
+        <button name={props.index} onClick={handleDelete}>Delete User</button>
+      </div>
+
+      {/* modal */}
+      <div className='modal__outer'>
+        <div className='modal__inner'>
+          <UsersForm user={props.user} index={props.index} />
+        </div>
+      </div>
+    </>
   )
 }
+
+
 
 export default UserCard;
